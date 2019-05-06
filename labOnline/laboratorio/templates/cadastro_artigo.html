@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Artigos{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+          <h1>Cadastro de Artigos</h1><br><br>
+          {% if codigo == 0 %}
+          <form class="form-horizontal" action="#" method="POST">{% csrf_token %}
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="nome">Título:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="titulo_Artigo" placeholder="Insira o nome da Academia" name="titulo_Artigo">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="ender">Autor:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="autor_Artigo" placeholder="Insira o autor do Artigo" name="autor_Artigo">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="email">Co-Autor:</label>
+              <div class="col-sm-7">
+
+                <input type="email" class="form-control" id="coautor_Artigo" placeholder="Insira o(s) co-autor(es) do artigo" name="coautor_Artigo">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="fone">Orientador:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="orientador_Artigo" placeholder="Insira o(s) orientador(es) do artigo" name="orientador_Artigo">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="qtdM">Status do Artigo:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="status_Artigo" placeholder="Insira o status atual do artigo" name="status_Artigo">
+                <br>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+          {% elif codigo == 1 %}
+            Efetuado com sucesso
+          {% endif %}
+          {{ codigo }}
+
+
+
+{% endblock %}
