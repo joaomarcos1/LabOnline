@@ -34,8 +34,8 @@ def login_user(request):
 				if request.user.is_staff:
 					return redirect('/admin')
 				else:
-					return render(request, 'interface_usuario.html')
-					#eturn redirect('interface_usuario')
+					#return render(request, 'interface_usuario.html')
+					return redirect('/interface_usuario')
 			else:
 				return render(request, 'login.html', {'error_message': 'Sua conta nao esta ativa.'})
 		else:

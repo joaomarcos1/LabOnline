@@ -20,7 +20,6 @@ class StatusArtigo(models.Model):
 
 
 
-
 class Aluno(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
@@ -94,17 +93,13 @@ class Aluno(models.Model):
 
 
 
-
-
-
-
 class Professor(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
-	usuario = models.TextField(default='')
-	senha = models.TextField(default='')
+	usuario = models.OneToOneField(User, on_delete = models.CASCADE)
+	#senha = models.TextField(default='')
 	matricula = models.TextField()
-	nome = models.CharField(max_length=50,null=True)
+	#nome = models.CharField(max_length=50,null=True)
 	cpf = models.IntegerField(null=True)
 	#curso = models.ManyToManyField(Curso)
 	#curso = models.ForeignKey(Curso, default=2, on_delete = models.CASCADE)
@@ -114,7 +109,6 @@ class Professor(models.Model):
 	#status = models.TextField()
 	#funcao = models.ForeignKey(Funcao, default=2, on_delete = models.CASCADE)
 	funcao = models.TextField(default='')
-
 
 	def setEmail(self, email):
 		self.email= email
