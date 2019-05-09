@@ -37,9 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'laboratorio',
-    'laboratorio.aluno',
-    'laboratorio.professor',
-    'laboratorio.users',
 	
 ]
 
