@@ -352,12 +352,12 @@ class Artigo(models.Model):
 
 
 class Noticia(models.Model):
-    autor = models.ForeignKey(Pessoa, default=1, on_delete = models.CASCADE)
+    autor = models.ForeignKey(Professor, default=1, on_delete = models.CASCADE)
     descricao = models.CharField(max_length=100, null=True)
     titulo = models.TextField()
     corpo = models.TextField()
     data_lancamento_noticia = models.DateTimeField(null=True)
-    imagem = models.ImageField(upload_to='noticias')
+    imagem = models.ImageField(upload_to='media')
     
 
     def setImagem(self, imagem=''):

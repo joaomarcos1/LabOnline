@@ -71,6 +71,17 @@ def artigos(request):
 	return render (request, 'artigos.html', {'artigos':artigos})
 
 
+
+def cadastro_em_evento(request, id):
+    eventos = Evento.objects.all().filter(id=id)
+   
+    if (request.method == 'POST'):
+    #    print("aaa")
+    	Aluno.setEventoCadastrado(eventos)
+    	Aluno.save
+    return render(request, 'cadastro_em_evento.html', {'eventos':eventos})
+
+
 def eventos(request):
 	eventos = Evento.objects.all()
 	return render (request, 'eventos.html', {'eventos':eventos})
@@ -81,7 +92,8 @@ def interface_professor(request, id):
 	professor = Professor.objects.get(id = id)
 	artigos = Artigo.objects.all()
 	eventos = Evento,objects.all()
-	return render (request, 'interface_professor.html', {'professor':professor, 'artigos':artigos, 'eventos':eventos})
+	noticias = Noticia.objects.all()
+	return render (request, 'interface_professor.html', {'professor':professor, 'artigos':artigos, 'eventos':eventos, 'noticias':noticias})
 
 
 
