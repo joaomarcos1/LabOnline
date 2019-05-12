@@ -80,11 +80,13 @@ def eventos(request):
 def interface_professor(request, id):
 	professor = Professor.objects.get(id = id)
 	artigos = Artigo.objects.all()
-	return render (request, 'interface_professor.html', {'professor':professor, 'artigos':artigos})
+	eventos = Evento,objects.all()
+	return render (request, 'interface_professor.html', {'professor':professor, 'artigos':artigos, 'eventos':eventos})
 
 
 
 def interface_usuario(request, pk=None):
+	'''
 	if not request.user.is_authenticaded():
 		return redirect('/login')
 		#return redirect('/interface_usuario/')
@@ -95,10 +97,17 @@ def interface_usuario(request, pk=None):
 			user = request.user
 			args = {'user': user}
 			#args = request.user
-			return render(request, 'interface_usuario.html', {'args':args})
+			HttpResponseRedirect(request, 'interface_usuario.html', {'args':args})
 	return render (request, 'interface_usuario.html')
-
-
+'''
+	if pk:
+		user = User.objetcs.get(pk)
+	else:
+		user = request.user
+		args = {'user': user}
+			#args = request.user
+		return render (request, 'interface_usuario.html', {'args':args})
+	return render (request, 'interface_usuario.html')
 
 
 

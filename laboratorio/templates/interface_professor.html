@@ -54,9 +54,9 @@
       <h4>Bem Vindo(a), {{user.username}}</h4>
       <ul class="nav nav-pills nav-stacked">
         <!--<li class="active"><a href="#section1">Alterar Informações</a></li>-->
-        <li ><a href="/editar_perfil">Alterar Informações</a></li>
-        <li><a href="cadastro_eventos">Solicitar Cadastro de Evento </a></li>
-        <li><a href="/eventos">Inscrever-se em Evento</a></li>
+        <li ><a href="/editar_perfil">Alterar Informações Pessoais</a></li>
+        <li><a href="cadastro_eventos">Cadastrar Evento </a></li>
+        <li><a href="/cadastro_artigo">Cadastrar Artigo</a></li>
         <li><a href="/logout">Desconectar</a></li>
       </ul><br>
       <!--
@@ -75,29 +75,36 @@
       <hr>
       <h2>{{user.username}}</h2>
       <br>
-      <p>Seja bem vindo(a) ao assitente do laboratório, aqui você poderá gerenciar suas atividades, bem como presença dentro do laboratório!</p>
+      <p>Seja bem vindo(a) ao assitente do laboratório, aqui você poderá gerenciar suas atividades, bem como gerenciar atividades que ocorrem no laboratório!</p>
           <div class="container">
             <div class="jumbotron col-sm-9">
               <h2>Trabalhos</h2>
-              <p>Aqui vicê pode gerenciar os seus trabalhos</p>            
+              <p>Aqui você pode gerenciar os seus trabalhos/artigos</p>            
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th>Título</th>
+                    <th>Status</th>
 
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
+                  	{% for a in artigos %}
+                  	{% if a.autor == user.first_name %}
+                    <td> {{ a.titulo }} </td>
+               		 {% endif %}
+                  	{% endfor %}
+
                   </tr>
                   <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
+               
+    				{% for a in artigos %}
+                  	{% if a.autor == user.first_name %}
+                    <td> {{ a.status }} </td>
+               		 {% endif %}
+                  	{% endfor %}
+
                   </tr>
               
                 </tbody>
@@ -107,6 +114,90 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+<!--    LISTAGEM DE EVENTOS CADASTRADOS  -->
+
+<div class="container">
+  <div class="row content">
+    <div class="col-sm-2 sidenav" style="margin-top: 20px;">
+   
+      <ul class="nav nav-pills nav-stacked">
+        <!--<li class="active"><a href="#section1">Alterar Informações</a></li>-->
+      
+      </ul><br>
+      <!--
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Blog..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>-->
+    </div>
+
+    <div class="col-sm-5" style="margin-left: 60px;">
+     
+      <hr>
+  
+          <div class="container">
+            <div class="jumbotron col-sm-9">
+              <h2>Eventos</h2>
+              <p>Aqui você pode gerenciar os eventos cadastrados</p>            
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Data de Início</th>
+                    <th>Data de Finalização</th>
+                    <th>Local</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  	{% for a in eventos %}
+                  	{% if a.autor == user.first_name %}
+                    <td> {{ a.nome_evento }} </td>
+               		 {% endif %}
+                  	{% endfor %}
+
+                  </tr>
+                  <tr>
+               
+    		      		{% for a in eventos %}
+                  	{% if a.autor == user.first_name %}
+                    <td> {{ a.data_inicio }} </td>
+               		 {% endif %}
+                  	{% endfor %}
+
+                  </tr>
+              
+
+        			<tr>
+               
+    				{% for a in eventos %}
+                  	{% if a.autor == user.first_name %}
+                    <td> {{ a.data_fim }} </td>
+               		 {% endif %}
+                  	{% endfor %}
+
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
 
 
 <!--

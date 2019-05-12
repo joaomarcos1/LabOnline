@@ -18,6 +18,74 @@ class StatusArtigo(models.Model):
 	def __str__(self):
 		return self.status
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Evento(models.Model):
+	nome_evento = models.TextField(default='')
+	data_inicio = models.DateTimeField()
+	data_fim = models.DateTimeField()
+	qualis = models.TextField(default='')
+	area = models.TextField(default='')
+	local = models.TextField(default='')
+	descricao = models.TextField(default='')
+
+	def setLocal(self, local):
+		self.local = local
+	def getLocal(self):
+		return self.local
+
+	def setDescricao(self, descricao):
+		self.descricao = descricao
+	def getDescricao(self):
+		return self.descricao
+
+	def setNomeEvento(self, nome_evento):
+		self.nome_evento = nome_evento
+	def getNomeEvento(self):
+		return self.nome_evento
+
+	def setDataInicioEvento(self, data_inicio):
+		self.data_inicio = data_inicio
+	def getDataInicioEvento(self):
+		return self.data_inicio
+
+	def setDataFimEvento(self, data_fim):
+		self.data_fim = data_fim
+	def getDataFimEvento(self):
+		return self.data_fim
+
+	def setQualis(self, qualis):
+		self.qualis = qualis
+	def getQualis(self):
+		return self.qualis
+
+	def setArea(self, area):
+		self.area = area
+	def getArea(self):
+		return self.area
+
+
+	def __str__(self):
+		return self.nome_evento
+
+		
+
+
+
+
+
+
 class Aluno(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
@@ -33,6 +101,12 @@ class Aluno(models.Model):
 	data_nascimento = models.TextField(max_length=20)
 	#status = models.TextField()
 	#funcao = models.ForeignKey(Funcao, default=2, on_delete = models.CASCADE)
+	eventos_cadastrado = models.ManyToManyField(Evento)
+
+	def setEventoCadastrado(self, eventos_cadastrado=''):
+		self.eventos_cadastrado = eventos_cadastrado
+	def getEventoCadastrado(self):
+		return self.eventos_cadastrado
 
 
 	def setCurso(self, curso):
@@ -316,53 +390,3 @@ class Area(models.Model):
 	def __str__(self):
 		return self.area
 
-
-class Evento(models.Model):
-	nome_evento = models.TextField(default='')
-	data_inicio = models.DateTimeField()
-	data_fim = models.DateTimeField()
-	qualis = models.TextField(default='')
-	area = models.TextField(default='')
-	local = models.TextField(default='')
-	descricao = models.TextField(default='')
-
-	def setLocal(self, local):
-		self.local = local
-	def getLocal(self):
-		return self.local
-
-	def setDescricao(self, descricao):
-		self.descricao = descricao
-	def getDescricao(self):
-		return self.descricao
-
-	def setNomeEvento(self, nome_evento):
-		self.nome_evento = nome_evento
-	def getNomeEvento(self):
-		return self.nome_evento
-
-	def setDataInicioEvento(self, data_inicio):
-		self.data_inicio = data_inicio
-	def getDataInicioEvento(self):
-		return self.data_inicio
-
-	def setDataFimEvento(self, data_fim):
-		self.data_fim = data_fim
-	def getDataFimEvento(self):
-		return self.data_fim
-
-	def setQualis(self, qualis):
-		self.qualis = qualis
-	def getQualis(self):
-		return self.qualis
-
-	def setArea(self, area):
-		self.area = area
-	def getArea(self):
-		return self.area
-
-
-	def __str__(self):
-		return self.nome_evento
-
-		
