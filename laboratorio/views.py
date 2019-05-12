@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404,render_to_response, redirect
-from .models import Pessoa, Curso, Funcao, StatusArtigo, Artigo, Noticia, Evento, Area, Aluno, Professor
+from .models import Pessoa, Curso, Funcao, StatusArtigo, Artigo, Noticia, Evento, Area, Aluno, Professor, horarios_laboratorio
 
 
 from django.http import HttpResponse
@@ -98,7 +98,8 @@ def interface_professor(request, id):
 
 
 def entrada_saida_laboratorio(request):
-	return render (request, 'entrada_saida_laboratorio.html')
+	codigo = 0
+	return render (request, 'entrada_saida_laboratorio.html', {'codigo':codigo})
 
 
 def interface_usuario(request, pk=None):

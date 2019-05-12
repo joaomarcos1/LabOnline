@@ -86,9 +86,12 @@ class Evento(models.Model):
 
 
 
+
+
 class Aluno(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
+	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	usuario = models.TextField(default='')
 	senha = models.TextField(default='')
 	matricula = models.TextField(default='')
@@ -242,7 +245,10 @@ class Professor(models.Model):
 		return self.nome
 
 
-
+class horarios_laboratorio(models.Model):
+	aluno = models.ForeignKey(Aluno, on_delete = models.CASCADE)
+	hora_entrada = models.DateTimeField(default='')
+	hora_saida = models.DateTimeField(default='')
 
 
 class Pessoa(models.Model):
