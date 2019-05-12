@@ -97,6 +97,10 @@ def interface_professor(request, id):
 
 
 
+def entrada_saida_laboratorio(request):
+	return render (request, 'entrada_saida_laboratorio.html')
+
+
 def interface_usuario(request, pk=None):
 	'''
 	if not request.user.is_authenticaded():
