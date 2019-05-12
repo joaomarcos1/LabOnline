@@ -79,10 +79,8 @@ def eventos(request):
 
 def interface_professor(request, id):
 	professor = Professor.objects.get(id = id)
-	return render (request, 'interface_professor.html', {'professor':professor})
-
-
-
+	artigos = Artigo.objects.all()
+	return render (request, 'interface_professor.html', {'professor':professor, 'artigos':artigos})
 
 
 
