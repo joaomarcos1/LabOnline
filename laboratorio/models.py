@@ -1,6 +1,14 @@
 from django.db import models
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.core import validators
+from django.utils.translation import ugettext_lazy as _
+import re
+
+
+
+
 
 class Curso(models.Model):
 	curso = models.TextField()
@@ -17,13 +25,6 @@ class StatusArtigo(models.Model):
 	status = models.TextField()
 	def __str__(self):
 		return self.status
-
-
-
-
-
-
-
 
 
 
@@ -91,7 +92,7 @@ class Evento(models.Model):
 class Aluno(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
-	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	#user = models.OneToOneField(User, on_delete = models.CASCADE)
 	usuario = models.TextField(default='')
 	senha = models.TextField(default='')
 	matricula = models.TextField(default='')
@@ -246,15 +247,29 @@ class Professor(models.Model):
 
 
 class horarios_laboratorio(models.Model):
-	aluno = models.ForeignKey(Aluno, on_delete = models.CASCADE)
+	#aluno = models.ForeignKey(Aluno, on_delete = models.CASCADE)
+	aluno = models.TextField(default='')
 	hora_entrada = models.DateTimeField(default='')
 	hora_saida = models.DateTimeField(default='')
+
+
+	def setAluno(self, aluno=''):
+		self.aluno = aluno
+
+	def setHorarioEntrada(self, hora_entrada=''):
+		self.hora_entrada = hora_entrada
+	def setHorarioSaida(self, hora_saida=''):
+		self.hora_saida = hora_saida
+
+
+
 
 
 class Pessoa(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
-	#matricula = models.TextField(unique=True)
+	user = models.OneToOneField(User, on_delete = models.CASCADE, default='')
+	matricula = models.TextField(unique=True,null=False, default='')
 	nome = models.CharField(max_length=50,null=True)
 	cpf = models.IntegerField(unique=True,null=True)
 	#curso = models.ManyToManyField(Curso)
@@ -263,7 +278,7 @@ class Pessoa(models.Model):
 	data_nascimento = models.TextField(max_length=20)
 	status = models.TextField()
 	#funcao = models.ForeignKey(Funcao, default=2, on_delete = models.CASCADE)
-	
+	funcao = models.TextField(default='')
 
 	def setUserName(self, username):
 		self.username = username

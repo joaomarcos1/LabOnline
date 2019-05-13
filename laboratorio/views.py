@@ -97,9 +97,7 @@ def interface_professor(request, id):
 
 
 
-def entrada_saida_laboratorio(request):
-	codigo = 0
-	return render (request, 'entrada_saida_laboratorio.html', {'codigo':codigo})
+
 
 
 def interface_usuario(request, pk=None):
@@ -164,6 +162,8 @@ def cadastro_usuario(request):
 
 def cadastro_artigo(request):
 	artigos = Artigo()
+	alunos = Aluno.objects.all()
+	professores= Professor.objects.all()
 	codigo = 0
 	if(request.method == 'POST'):
 		artigos.setTitulo(request.POST.get('titulo_Artigo'))
@@ -173,8 +173,25 @@ def cadastro_artigo(request):
 		artigos.setStatus(request.POST.get('status_Artigo'))
 		artigos.save()
 		codigo = 1
-		return render(request, 'cadastro_artigo.html', {'codigo':codigo})
-	return render (request, 'cadastro_artigo.html', {'codigo':codigo})
+		return render(request, 'cadastro_artigo.html', {'codigo':codigo, 'professores':professores, 'alunos':alunos})
+	return render (request, 'cadastro_artigo.html', {'codigo':codigo, 'professores':professores, 'alunos':alunos})
+
+
+
+def entrada_saida_laboratorio(request):
+	codigo = 0
+	alunos = Aluno.objects.all()
+	entrada = horarios_laboratorio()
+	if (request.method == 'POST'):
+		entrada.setAluno(request.POST.get('nome_aluno'))
+		entrada.setHorarioEntrada(request.POST.get('data_inicio'))
+		entrada.setHorarioSaida(request.POST.get('data_fim'))
+		entrada.save()
+		codigo = 1
+		return render (request, 'entrada_saida_laboratorio.html', {'codigo':codigo, 'alunos':alunos})
+
+
+	return render (request, 'entrada_saida_laboratorio.html', {'codigo':codigo, 'alunos':alunos})
 
 
 
@@ -254,3 +271,7 @@ def cadastro_noticias(request):
 def noticia(request, id):
 	noticia = Noticia.objects.get(id = id)
 	return render(request, 'noticia.html', {'noticia':noticia})
+
+
+def sobre(request):
+    return render (request, 'sobre.html')
