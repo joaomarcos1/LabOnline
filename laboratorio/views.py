@@ -196,6 +196,14 @@ def entrada_saida_laboratorio(request):
 
 
 
+def entradas_alunos(request):
+	entradas = horarios_laboratorio.objects.all()
+	return render (request, 'entradas_alunos.html', {'entradas':entradas})
+
+
+
+
+
 def cadastro_aluno(request):
 	aluno = Aluno()	
 	codigo = 0
