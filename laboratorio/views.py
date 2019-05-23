@@ -72,6 +72,16 @@ def artigos(request):
 
 
 
+
+
+
+
+def editar_perfil_alunos(request, id):
+	alunos = Aluno.objects.get(id = id)
+	return render (request, "editar_perfil_aluno.html", {'alunos':alunos})
+
+
+
 def cadastro_em_evento(request, id):
     eventos = Evento.objects.all().filter(id=id)
    

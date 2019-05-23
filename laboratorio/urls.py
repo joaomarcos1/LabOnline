@@ -23,5 +23,6 @@ urlpatterns = [
 	url(r'^cadastro_em_evento/(?P<id>\d+)/$', views.cadastro_em_evento, name='cadastro_em_evento.html'),
 	url(r'^entrada_saida_laboratorio', views.entrada_saida_laboratorio, name='entrada_saida_laboratorio.html'),
 	url(r'^sobre$', views.sobre, name='sobre.html'),
-	url(r'^entradas_alunos$', views.entradas_alunos, name='entradas_alunos.html')
+	url(r'^entradas_alunos$', views.entradas_alunos, name='entradas_alunos.html'),
+	url(r'^editar_perfil_alunos/(?P<id>\d+)/', views.editar_perfil_alunos, name='editar_perfil_alunos.html')
 ]
