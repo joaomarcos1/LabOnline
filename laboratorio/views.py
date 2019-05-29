@@ -207,11 +207,6 @@ def editar_perfil_alunos(request, id):
 
 
 
-
-
-
-
-
 def entrada_saida_laboratorio(request):
 	codigo = 0
 	alunos = Aluno.objects.all()

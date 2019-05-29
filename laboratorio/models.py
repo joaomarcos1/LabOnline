@@ -93,7 +93,7 @@ class Aluno(models.Model):
 	#username = models.CharField(max_length=50,unique=True,null=True)
 	#password = models.CharField(max_length=50,null=True)
 	#user = models.OneToOneField(User, on_delete = models.CASCADE)
-	#usuario_u = models.OneToOneField(User, on_delete = models.CASCADE, default='')
+	#usuario_u = models.ForeignKey(User, on_delete = models.CASCADE, default=1)
 	usuario = models.TextField(default='')
 	senha = models.TextField(default='')
 	matricula = models.TextField(default='')

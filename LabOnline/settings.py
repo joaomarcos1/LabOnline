@@ -127,10 +127,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #MEDIA_ROOT = '{}/media/'
 
-#MEDIA_URL = '/media'
-MEDIA_URL = '/media/'
 
 
-#MEDIA_ROOT = os.path.join (BASE_DIR, 'LabOnline/media')
+#MEDIA_URL = '/media/'
+
+
+MEDIA_ROOT = os.path.join (BASE_DIR, 'LabOnline/media/')
 
 # Configure Django App for Heroku.
