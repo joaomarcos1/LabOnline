@@ -76,11 +76,6 @@ def artigos(request):
 
 
 
-def editar_perfil_alunos(request, id):
-	alunos = Aluno.objects.get(id = id)
-	return render (request, "editar_perfil_aluno.html", {'alunos':alunos})
-
-
 
 def cadastro_em_evento(request, id):
     eventos = Evento.objects.all().filter(id=id)
@@ -145,6 +140,12 @@ def logout(request):
 
 
 
+
+
+
+
+
+
 def cadastro_usuario(request):
 	form = RegistrationForm(request.POST or None)
 	if form.is_valid():
@@ -185,6 +186,29 @@ def cadastro_artigo(request):
 		codigo = 1
 		return render(request, 'cadastro_artigo.html', {'codigo':codigo, 'professores':professores, 'alunos':alunos})
 	return render (request, 'cadastro_artigo.html', {'codigo':codigo, 'professores':professores, 'alunos':alunos})
+
+
+
+def editar_perfil_alunos(request, id):
+	alunos = Aluno.objects.get(id = id)
+	codigo = 0
+	if (request.method == 'POST'):
+		alunos.setNome(request.POST.get('nome'))
+		alunos.setMatricula(request.POST.get('matricula'))
+		alunos.setCPF(request.POST.get('cpf'))
+		alunos.setDataNascimento(request.POST.get('data_nascimento'))
+		alunos.setCurso(request.POST.get('curso'))
+		alunos.setUsuario(request.POST.get('username'))
+		alunos.setSenha(request.POST.get('password'))
+		alunos.save()
+		codigo=1
+	return render (request, "editar_perfil_aluno.html", {'alunos':alunos, 'codigo':codigo})
+
+
+
+
+
+
 
 
 
@@ -246,6 +270,24 @@ def cadastro_professor(request):
 		professor.setFuncao(request.POST.get('funcao'))
 		professor.setEmail(request.POST.get('email'))
 		professor.save()
+
+		#ABAIXO - TESTE DE CRIAÇÃO DE USUÁRIO DO DJANGO COM AS MESMAS INFORMAÇÕES
+		form = RegistrationForm(request.POST or None)
+		if form.is_valid():
+			user = form.save(commit=False)
+			username = request.POST.get('username')
+			first_name = request.POST.get('nome')
+			last_name = request.POST.get('nome')
+			email = request.POST.get('email')
+			password = request.POST.get('password')
+			password2 = request.POST.get('password')
+			if password != password2:
+				return render(request, 'cadastro_professor.html')
+			elif first_name == '' or last_name == '' or email == '':
+				return render(request, 'cadastro_professor.html')
+			user.set_password(password)
+			user.save()
+			
 		codigo=1
 		return render (request, 'cadastro_professor.html', {'codigo':codigo})
 
